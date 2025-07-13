@@ -1,0 +1,95 @@
+{% extends 'stlayout/base.html' %}
+{% block staffblock %}
+
+<h1 style="text-align: center; color: #333;">Welcome to Library Staff Home Page, {{ staffname|title }}</h1>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    {% for data in staffdata %}
+    <div style="width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: rosybrown; text-align: center;">
+        <h3 style="color: white;">{{ data.role }}</h3>
+        <p><strong>Name:</strong> {{ data.name }}</p>
+        <p><strong>Email:</strong> {{ data.email }}</p>
+        <p><strong>Mobile:</strong> {{ data.mobile }}</p>
+        <p><strong>Gender:</strong> {{ data.gender }}</p>
+        <p><strong>Date of Birth:</strong> {{ data.dob }}</p>
+    </div>
+    {% endfor %}
+
+    {% for data1 in fdata %}
+    <div style="width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: cadetblue; text-align: center;">
+        <h3 style="color: white;">{{ data1.role }}</h3>
+        <p><strong>Name:</strong> {{ data1.name }}</p>
+        <p><strong>Email:</strong> {{ data1.email }}</p>
+        <p><strong>Mobile:</strong> {{ data1.mobile }}</p>
+        <p><strong>Gender:</strong> {{ data1.gender }}</p>
+        <p><strong>Date of Birth:</strong> {{ data1.dob }}</p>
+    </div>
+    {% endfor %}
+
+    {% for data2 in sdata %}
+    <div style="width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: brown; text-align: center;">
+        <h3 style="color: white;">{{ data2.role }}</h3>
+        <p><strong>Name:</strong> {{ data2.name }}</p>
+        <p><strong>Email:</strong> {{ data2.email }}</p>
+        <p><strong>Mobile:</strong> {{ data2.mobile }}</p>
+        <p><strong>Gender:</strong> {{ data2.gender }}</p>
+        <p><strong>Date of Birth:</strong> {{ data2.dob }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+<!-- <h1 style="text-align: center; color: #333;">Welcome to Library Staff Home Page, {{ staffname|title }}</h1>
+
+<div style="padding: 20px; display: flex; justify-content: center;">
+    <table border="1" style="width: 80%; border-collapse: collapse; text-align: center;">
+        <thead>
+            <tr style="background-color: #555; color: white;">
+                <th>Role</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in staffdata %}
+            <tr style="background-color: rosybrown; color: white;">
+                <td>{{ data.role }}</td>
+                <td>{{ data.name }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.mobile }}</td>
+                <td>{{ data.gender }}</td>
+                <td>{{ data.dob }}</td>
+            </tr>
+            {% endfor %}
+            
+            {% for data1 in fdata %}
+            <tr style="background-color: cadetblue; color: white;">
+                <td>{{ data1.role }}</td>
+                <td>{{ data1.name }}</td>
+                <td>{{ data1.email }}</td>
+                <td>{{ data1.mobile }}</td>
+                <td>{{ data1.gender }}</td>
+                <td>{{ data1.dob }}</td>
+            </tr>
+            {% endfor %}
+            
+            {% for data2 in sdata %}
+            <tr style="background-color: brown; color: white;">
+                <td>{{ data2.role }}</td>
+                <td>{{ data2.name }}</td>
+                <td>{{ data2.email }}</td>
+                <td>{{ data2.mobile }}</td>
+                <td>{{ data2.gender }}</td>
+                <td>{{ data2.dob }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> -->
+
+

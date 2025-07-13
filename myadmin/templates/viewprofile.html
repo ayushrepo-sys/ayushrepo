@@ -1,0 +1,170 @@
+
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #007bff;
+        }
+
+        .edit-icon {
+            position: absolute;
+            top: 60%;
+            right: 40%;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .edit-icon:hover {
+            background: #0056b3;
+        }
+
+        .edit-icon i {
+            font-size: 14px;
+        }
+
+        .profile-header h2 {
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        .profile-header p {
+            color: #777;
+            font-size: 1rem;
+        }
+
+        .profile-details {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .profile-details th, .profile-details td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .profile-details th {
+            background: #f8f9fa;
+            color: #007bff;
+        }
+
+        .profile-details td a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .profile-details td a:hover {
+            text-decoration: underline;
+        }
+
+        .profile-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <img src="{{ data2.image.url }}" alt="Profile Image">
+            <!-- Edit Icon -->
+            <div class="edit-icon" title="Edit Image">
+                <a href="{% url 'aprofile' %}" style="text-decoration: none; color: white;">
+                    <i>&#9998;</i>
+                </a>
+            </div>
+            
+            <h2>{{ obj.name|title }}</h2>
+            <p>{{ obj.role }}</p>
+        </div>
+
+        <!-- Profile Details -->
+        <table class="profile-details">
+            <tr>
+                <th>Name</th>
+                <td>{{ obj.name |title }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ obj.email }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ obj.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ obj.gender }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ obj.role }}</td>
+            </tr>
+            <tr>
+                <th>Date of Birth</th>
+                <td>{{ obj.dob }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ data2.address }}</td>
+            </tr>
+            <tr>
+                <th>Document</th>
+                <td><a href="{{ data2.upload_doc.url }}">Download Document</a></td>
+            </tr>
+        </table>
+
+        <!-- Footer -->
+        <div class="profile-footer">
+            <p>&copy; 2024 Profile Page. All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- Back Button -->
+<div style="margin-bottom: 15px;">
+    <a href="{% if obj.role == 'staff' %}{% url 'staffhome' %}{% elif obj.role == 'student' %}{% url 'shome' %}{% else %}{% url 'home' %}{% endif %}" 
+       style="text-decoration: none; background: #007bff; color: white; padding: 8px 15px; border-radius: 5px; display: inline-block;">
+        ← Back to Home
+    </a>
+</div>
+
+
+
+</body>
+

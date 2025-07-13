@@ -1,0 +1,45 @@
+{% extends 'stlayout/base.html' %}
+{% block staffblock %}
+<div class="container mt-5">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">BOOKNAME</th>
+                <th scope="col">Author Name</th>
+                <th scope="col">ISBN</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in viewbook %}
+            <tr>
+                <form method="post">
+                    {% csrf_token %}
+                    {% if edit_isbn == data.ISBN_No %}
+                        <!-- Editable Fields -->
+                        <td><input type="text" name="Book_Name" value="{{ data.Book_Name }}" class="form-control"></td>
+                        <td><input type="text" name="Author_Name" value="{{ data.Author_Name }}" class="form-control"></td>
+                        <td><input type="text" name="ISBN_No" value="{{ data.ISBN_No }}" class="form-control"></td>
+                        <td>
+                            <input type="hidden" name="ISBN_No" value="{{ data.ISBN_No }}">
+                            <button type="submit" name="btn" value="save" class="btn btn-success">Save</button>
+                            <button type="submit" name="btn" value="cancel" class="btn btn-secondary">Cancel</button>
+                        </td>
+                    {% else %}
+                        <!-- Static Display -->
+                        <td>{{ data.Book_Name }}</td>
+                        <td>{{ data.Author_Name }}</td>
+                        <td>{{ data.ISBN_No }}</td>
+                        <td>
+                            <input type="hidden" name="ISBN_No" value="{{ data.ISBN_No }}">
+                            <button type="submit" name="btn" value="edit" class="btn btn-primary">Edit</button>
+                            <button type="submit" name="btn" value="delete" class="btn btn-danger">Delete</button>
+                        </td>
+                    {% endif %}
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

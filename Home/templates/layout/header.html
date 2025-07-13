@@ -1,0 +1,31 @@
+{% load static %}
+<header class="p-3 text-bg-dark">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+            <!-- Left-aligned Virtual Class title -->
+            <a href="/" class="d-flex align-items-center text-white text-decoration-none me-5">
+                <h1 class="mb-0">Virtual Class</h1>
+            </a>
+
+            <!-- Navigation menu centered -->
+            <ul class="nav me-auto">
+                <li><a href="{% url 'home' %}" class="nav-link px-3 text-secondary">Home</a></li>
+                <li><a href="{% url 'about' %}" class="nav-link px-3 text-white">About</a></li>
+                <li><a href="{% url 'contact' %}" class="nav-link px-3 text-white">Contact</a></li>
+                <li><a href="{% url 'faq' %}" class="nav-link px-3 text-white">FAQ</a></li>
+                <li><a href="{% url 'gallary' %}" class="nav-link px-3 text-white">Gallary</a></li>
+            </ul>
+
+            <!-- Search Bar -->
+            <form class="d-flex me-3" role="search">
+                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <!-- Login & Sign-up Buttons -->
+            <div class="text-end">
+                <a href="/login/" class="btn btn-outline-light me-2">Login</a>
+                <a href="/register/" class="btn btn-warning text-white">Sign-up</a>
+            </div>
+        </div>
+    </div>
+</header>

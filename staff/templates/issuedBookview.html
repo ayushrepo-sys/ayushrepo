@@ -1,0 +1,31 @@
+{% extends 'stlayout/base.html' %}
+{% block staffblock %}
+<div class="container mt-5">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">BOOKNAME</th>
+                <th scope="col">Mobile</th>
+                <th scope="col">Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data1 in viewbookissue %}
+            <tr>
+                <td>{{ data1.Book_Name }}</td>
+                <td>{{ data1.mobile }}</td>
+                <td>{{ data1.Issued_Date }}</td>
+                <form method="post">
+                    {% csrf_token %}
+                <td>
+                    <input type='text' name="book_id" value="{{data1.Book_issued_id}}" hidden>
+                    <input type="submit" value="cancel" name="btn">
+                </td>
+            </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

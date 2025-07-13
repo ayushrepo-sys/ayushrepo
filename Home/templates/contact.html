@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'layout/base.html' %}
+{% block content %}
+{% load static %}
+<body>
+
+    <!-- Hero Section -->
+    <section class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Contact Us</h1>
+            <p class="lead">We'd love to hear from you! Get in touch with us anytime.</p>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-lg-6">
+                    <h2>Send Us a Message</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="col-lg-6">
+                    <h2>Contact Information</h2>
+                    <p><i class="fas fa-envelope text-primary"></i> Email: support@virtualclass.com</p>
+                    <p><i class="fas fa-phone text-success"></i> Phone: +123 456 7890</p>
+                    <p><i class="fas fa-map-marker-alt text-danger"></i> Address: 123 Virtual Lane, Online City</p>
+
+                    <!-- Google Map Embed (Optional) -->
+                    <div class="mt-4">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=New%20York&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-primary text-white text-center py-5">
+        <div class="container">
+            <h2>Have Any Questions?</h2>
+            <p>We're here to help! Feel free to reach out.</p>
+            <a href="/faq" class="btn btn-light btn-lg mt-3">Visit FAQ</a>
+        </div>
+    </section>
+
+   
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,57 @@
+{% extends 'flayout/base.html'%}
+{% block myblock %}
+
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<style>
+    .highlight-row {
+        background-color: aqua; /* Highlight specific row */
+    }
+    .welcome-header {
+        background-color: #007BFF; /* Blue background */
+        color: white; /* White text */
+        padding: 15px;
+        border-radius: 5px;
+        text-align: center;
+    }
+</style>
+
+<div class="container mt-5">
+    <!-- Welcome Header -->
+    <h1 class="welcome-header">Welcome to Faculty Home Page, {{ fname|title }}...</h1>
+
+    <!-- Faculty Details Table -->
+    <div class="table-responsive mt-4">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Gender</th>
+                    <th>Role</th>
+                    <th>DOB</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+              
+                <!-- Dynamic Rows -->
+                {% for fdata in data1 %}
+                <tr>
+                    <td>{{ fdata.name }}</td>
+                    <td>{{ fdata.email }}</td>
+                    <td>{{ fdata.mobile }}</td>
+                    <td>{{ fdata.gender }}</td>
+                    <td>{{ fdata.role }}</td>
+                    <td>{{ fdata.dob }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    {% endblock %}

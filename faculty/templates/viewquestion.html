@@ -1,0 +1,130 @@
+{% extends 'flayout/base.html' %}
+{% block myblock %}
+
+<!-- Include Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Questions Table</h3>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead" style="background-color: #a1c5ea;">
+                <tr>
+                    <th>Subject</th>
+                    <th>Chapter</th>
+                    <th>Question</th>
+                    <th>Option 1</th>
+                    <th>Option 2</th>
+                    <th>Option 3</th>
+                    <th>Option 4</th>
+                    <th>Answer</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in qsn %}
+                <tr data-id="{{ data.question_id }}">
+                    <td contenteditable="false" class="subject">{{ data.subject_name }}</td>
+                    <td contenteditable="false" class="chapter">{{ data.chapter_name }}</td>
+                    <td contenteditable="false" class="question">{{ data.Question }}</td>
+                    <td contenteditable="false" class="option1">{{ data.option1 }}</td>
+                    <td contenteditable="false" class="option2">{{ data.option2 }}</td>
+                    <td contenteditable="false" class="option3">{{ data.option3 }}</td>
+                    <td contenteditable="false" class="option4">{{ data.option4 }}</td>
+                    <td contenteditable="false" class="answer">{{ data.answer }}</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm edit-btn">Edit</button>
+                        <button class="btn btn-success btn-sm save-btn d-none">Save</button>
+                        <button class="btn btn-secondary btn-sm cancel-btn d-none">Cancel</button>
+                        <button class="btn btn-danger btn-sm delete-btn">Delete</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".edit-btn").click(function () {
+            let row = $(this).closest("tr");
+            row.find("td[contenteditable='false']").attr("contenteditable", "true").addClass("table-warning");
+            
+            row.find(".edit-btn").addClass("d-none");
+            row.find(".save-btn, .cancel-btn").removeClass("d-none");
+        });
+
+        $(".cancel-btn").click(function () {
+            let row = $(this).closest("tr");
+            row.find("td").attr("contenteditable", "false").removeClass("table-warning");
+
+            row.find(".edit-btn").removeClass("d-none");
+            row.find(".save-btn, .cancel-btn").addClass("d-none");
+        });
+
+        $(".save-btn").click(function () {
+            let row = $(this).closest("tr");
+            let qid = row.attr("data-id");
+            let subject = row.find(".subject").text();
+            let chapter = row.find(".chapter").text();
+            let question = row.find(".question").text();
+            let option1 = row.find(".option1").text();
+            let option2 = row.find(".option2").text();
+            let option3 = row.find(".option3").text();
+            let option4 = row.find(".option4").text();
+            let answer = row.find(".answer").text();
+
+            $.ajax({
+                type: "POST",
+                url: "{% url 'updateQuestion' %}",
+                data: {
+                    qid: qid,
+                    subject_name: subject,
+                    chapter_name: chapter,
+                    Question: question,
+                    option1: option1,
+                    option2: option2,
+                    option3: option3,
+                    option4: option4,
+                    answer: answer,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (response) {
+                    alert("Question updated successfully!");
+                    row.find("td").attr("contenteditable", "false").removeClass("table-warning");
+                    row.find(".edit-btn").removeClass("d-none");
+                    row.find(".save-btn, .cancel-btn").addClass("d-none");
+                },
+                error: function () {
+                    alert("Error updating question. Please try again.");
+                }
+            });
+        });
+
+        $(".delete-btn").click(function () {
+            let row = $(this).closest("tr");
+            let qid = row.attr("data-id");
+
+            if (confirm("Are you sure you want to delete this question?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'deleteQuestion' %}",
+                    data: {
+                        qid: qid,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (response) {
+                        row.remove();
+                        alert("Question deleted successfully!");
+                    },
+                    error: function () {
+                        alert("Error deleting question.");
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

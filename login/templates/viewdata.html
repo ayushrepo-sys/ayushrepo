@@ -1,0 +1,25 @@
+
+
+<table border="solid">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Gender</th>
+        <th>Role</th>
+        <th>DOB</th>
+
+    </tr>
+    {%  for obj in data %}
+
+    <tr>
+        <td>{{obj.name}}</td>
+        <td>{{obj.email}}</td>
+        <td>{{obj.mobile}}</td>
+        <td>{{obj.gender}}</td>
+        <td>{{obj.role}}</td>
+        <td>{{obj.dob}}</td>
+
+    </tr>
+    {% endfor %}
+</table>

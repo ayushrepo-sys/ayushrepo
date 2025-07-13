@@ -1,0 +1,89 @@
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .profile-header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .profile-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .profile-form {
+            padding: 20px;
+        }
+        .profile-form label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        .profile-form input[type="text"],
+        .profile-form input[type="file"],
+        .profile-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .profile-form input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .profile-form input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <h2>User Profile</h2>
+    </div>
+    <form  enctype="multipart/form-data" method="post" action="{% url 'aprofile' %}" class="profile-form">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="{{data1.name}}">
+        
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="{{data1.email}}">
+        
+        <label for="pwd">Password</label>
+        <input type="text" id="pwd" name="pwd" value="{{data1.password}}">
+        <label for="mobile">Mobile</label>
+        <input type="text" id="mobile" name="mobile" value="{{data1.mobile}}">
+        
+        <label for="dob">Date of Birth</label>
+        <input type="text" id="dob" name="dob" value="{{data1.dob|date:"Y-m-d"}}">
+        <label for="role">Role</label>
+        <input type="text" id="role" name="role" value="{{data1.role}}">
+        <label for="role">Address</label>
+        <input type="text" id="address" name="address" value="{{data2.address}}">
+        <label for="image" >Upload Profile Image</label>
+        <input type="file" id="image" name="image" value="{{data2.image}}">
+        <label for="data-upload">Upload Additional Data</label>
+        <input type="file" id="data-upload" name="uploaded_doc" value="{{data2.upload_doc}}">
+        <input type="submit" name="btn" value="Update">
+    </form>
+  
+</div>
+
+

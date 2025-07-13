@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>faculty page</title>
+    
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: cornflowerblue;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav ul li a:hover,
+nav ul li:hover > a {
+    background-color: #555;
+}
+
+nav ul li .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    min-width: 200px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+nav ul li .dropdown-content li {
+    margin: 0;
+}
+
+nav ul li .dropdown-content li a {
+    padding: 10px;
+}
+
+nav ul li:hover .dropdown-content {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'fhome' %}">Home</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'viewprofile' %}">ViewProfile</a></li>
+
+                <li class="dropdown">
+                    <a href="">Add</a>
+                    <ul class="dropdown-content">
+                        <li><a href="{% url 'addsubject' %}">Add Sub</a></li>
+                        <li><a href="{% url 'addchapter' %}">Add Chapter</a></li>
+                        <li><a href="{% url 'addquestion' %}">Add Question</a></li>
+                        
+                    </ul>
+                </li><li><a href="{% url 'viewquestion' %}">viewquestion</a></li>
+            </li><li><a href="{% url 'logout' %}">logout</a></li>
+
+            </ul>
+        </nav>
+    </header>
+

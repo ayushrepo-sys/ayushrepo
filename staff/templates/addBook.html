@@ -1,0 +1,47 @@
+{% extends 'stlayout/base.html' %}
+{% block staffblock %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Add Book</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Book Name -->
+                        <div class="form-group">
+                            <label for="bname">Book Name</label>
+                            <input type="text" class="form-control" id="bname" name="bname" required>
+                        </div>
+
+                        <!-- Author Name -->
+                        <div class="form-group">
+                            <label for="aname">Author Name</label>
+                            <input type="text" class="form-control" id="aname" name="aname" required>
+                        </div>
+
+                        <!-- ISBN Number -->
+                        <div class="form-group">
+                            <label for="isbnno">ISBN Number</label>
+                            <input type="text" class="form-control" id="isbnno" name="isbnno" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary btn-block" name="btn">Add Book</button>
+                    </form>
+                    
+                    <!-- Message Display -->
+                    {% if msg %}
+                    <div class="alert alert-info mt-3">
+                        {{ msg }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

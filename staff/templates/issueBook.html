@@ -1,0 +1,46 @@
+{% extends 'stlayout/base.html' %}
+{% block staffblock %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Issue Book</h4>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        
+                        <!-- Book Name -->
+                        <div class="form-group">
+                            <label for="bookname">Book Name</label>
+                            <select class="form-control" id="bookname" name="bookname" required>
+                                <option value="0" disabled selected>---Select Book---</option>
+                                {% for data in obbook %}
+                                <option value="{{ data.Book_Name }}">{{ data.Book_Name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div class="form-group">
+                            <label for="mobile">Mobile</label>
+                            <select class="form-control" id="mobile" name="mobile" required>
+                                <option value="0" disabled selected>---Select Mobile---</option>
+                                {% for data1 in obmobile %}
+                                <option value="{{ data1.mobile }}">{{ data1.mobile }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block" name="btn">Issue Book</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
